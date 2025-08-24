@@ -8,7 +8,7 @@ from llama_cpp import Llama
 from typing import List, Dict, Any, Tuple
 import faiss
 from sentence_transformers import SentenceTransformer
-from deepeval.metrics import AnswerRelevancyMetric, CorrectnessMetric
+from deepeval.metrics import AnswerRelevancyMetric, FaithfulnessMetric
 from deepeval.test_case import LLMTestCase
 import nltk
 from nltk.sentiment import SentimentIntensityAnalyzer
@@ -250,7 +250,7 @@ def evaluate_answers(df: pd.DataFrame, rag_answers: List[str]) -> List[Dict[str,
     
     # Initialize metrics
     relevancy_metric = AnswerRelevancyMetric(threshold=0.7)
-    correctness_metric = CorrectnessMetric(threshold=0.7)
+    faithfulness_metric = FaithfulnessMetric(threshold=0.7)
     
     # Load model for evaluation
     model = load_model()
@@ -274,11 +274,11 @@ def evaluate_answers(df: pd.DataFrame, rag_answers: List[str]) -> List[Dict[str,
         
         # Set custom evaluator
         relevancy_metric.llm_evaluator = custom_llm_evaluator
-        correctness_metric.llm_evaluator = custom_llm_evaluator
+        faithfulness_metric.llm_evaluator = custom_llm_evaluator
         
         # Run evaluation
         relevancy_result = relevancy_metric.measure(test_case)
-        correctness_result = correctness_metric.measure(test_case)
+        faithfulness_result = faithfulness_metric.measure(test_case)
         
         # Generate feedback
         relevancy_feedback = f"Your Relevancy score is {relevancy_result.score:.2f}. "
@@ -288,21 +288,21 @@ def evaluate_answers(df: pd.DataFrame, rag_answers: List[str]) -> List[Dict[str,
         else:
             relevancy_feedback += "You did a good job addressing the customer's main concerns."
         
-        correctness_feedback = f"Your Correctness score is {correctness_result.score:.2f}. "
-        if correctness_result.score < 0.7:
-            correctness_feedback += "Your answer contained some inaccurate information. "
-            correctness_feedback += "You need to brush up on your product knowledge and procedures."
+        faithfulness_feedback = f"Your Faithfulness score is {faithfulness_result.score:.2f}. "
+        if faithfulness_result.score < 0.7:
+            faithfulness_feedback += "Your answer contained some inaccurate information. "
+            faithfulness_feedback += "You need to brush up on your product knowledge and procedures."
         else:
-            correctness_feedback += "Your information was accurate and helpful."
+            faithfulness_feedback += "Your information was accurate and helpful."
         
         results.append({
             'question': question,
             'csr_answer': csr_answer,
             'rag_answer': rag_answer,
             'relevancy_score': relevancy_result.score,
-            'correctness_score': correctness_result.score,
+            'faithfulness_score': faithfulness_result.score,
             'relevancy_feedback': relevancy_feedback,
-            'correctness_feedback': correctness_feedback
+            'faithfulness_feedback': faithfulness_feedback
         })
     
     return results
@@ -366,7 +366,7 @@ def create_concise_summary(feedback_data: Dict[str, Any]) -> str:
     if 'evaluation_results' in feedback_data:
         for result in feedback_data['evaluation_results']:
             all_feedback += result['relevancy_feedback'] + "\n"
-            all_feedback += result['correctness_feedback'] + "\n\n"
+            all_feedback += result['faithfulness_feedback'] + "\n\n"
     
     # Generate concise summary
     prompt = f"""
@@ -506,12 +506,12 @@ def main():
                     
                     st.subheader("CSR Performance Overview")
                     avg_relevancy = sum(r['relevancy_score'] for r in evaluation_results) / len(evaluation_results)
-                    avg_correctness = sum(r['correctness_score'] for r in evaluation_results) / len(evaluation_results)
+                    avg_faithfulness = sum(r['faithfulness_score'] for r in evaluation_results) / len(evaluation_results)
                     avg_sentiment = sum(sentiment_scores) / len(sentiment_scores)
                     
                     col1, col2, col3 = st.columns(3)
                     col1.metric("Avg. Relevancy", f"{avg_relevancy:.2f}")
-                    col2.metric("Avg. Correctness", f"{avg_correctness:.2f}")
+                    col2.metric("Avg. Faithfulness", f"{avg_faithfulness:.2f}")
                     col3.metric("Avg. Sentiment", f"{avg_sentiment:.2f}")
                 
                 with tab2:
@@ -562,13 +562,13 @@ def main():
                             
                             col1, col2 = st.columns(2)
                             col1.metric("Relevancy Score", f"{result['relevancy_score']:.2f}")
-                            col2.metric("Correctness Score", f"{result['correctness_score']:.2f}")
+                            col2.metric("Faithfulness Score", f"{result['faithfulness_score']:.2f}")
                             
                             st.write("**Relevancy Feedback:**")
                             st.write(result['relevancy_feedback'])
                             
-                            st.write("**Correctness Feedback:**")
-                            st.write(result['correctness_feedback'])
+                            st.write("**Faithfulness Feedback:**")
+                            st.write(result['faithfulness_feedback'])
                             
                             st.write("**Sentiment Analysis:**")
                             st.write(sentiment_feedback[i])
@@ -579,4 +579,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
