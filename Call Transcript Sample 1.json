@@ -1,0 +1,38 @@
+{
+  "call_transcript": [
+    "CSR: Thank you for calling ABC Tech Support, this is Sarah speaking. How may I assist you today?",
+    "Customer: Hi Sarah, I'm having trouble with my internet connection. It keeps dropping every few minutes.",
+    "CSR: I'm sorry to hear that you're experiencing issues with your internet connection. I'd be happy to help you troubleshoot this problem. Could you please provide me with your account number or the phone number associated with your account so I can pull up your information?",
+    "Customer: Sure, my phone number is 555-123-4567.",
+    "CSR: Thank you for providing that information. I'm pulling up your account now. Could you please hold for a moment while I access your details?",
+    "Customer: Yes, that's fine.",
+    "CSR: Thank you for your patience. I can see that you have our high-speed fiber internet package. Before we dive into troubleshooting, could you tell me when you first noticed this issue with your connection dropping?",
+    "Customer: It started yesterday evening. Everything was working fine before that.",
+    "CSR: I understand. Thank you for that information. Let's try to resolve this issue. First, I'd like to check if there are any known outages in your area. Could you please hold for a moment while I check our system?",
+    "Customer: Sure, go ahead.",
+    "CSR: Thank you for holding. I don't see any reported outages in your area at this time. Let's try some basic troubleshooting steps. Have you tried restarting your router already?",
+    "Customer: Yes, I've restarted it twice, but the problem persists.",
+    "CSR: I see. Thank you for trying that step already. Let's try a few more things. I'm going to send a reset signal to your router from our end. This might disconnect our call, so if that happens, please call back and ask for me, Sarah, and I'll continue helping you. Is that okay?",
+    "Customer: Yes, that's fine. I'll call back if we get disconnected.",
+    "CSR: Great. I'm sending the reset signal now. While we wait for that to process, could you also check if all the cables connected to your router are secure? Sometimes loose connections can cause intermittent issues.",
+    "Customer: I just checked and all the cables seem to be connected properly.",
+    "CSR: Thank you for checking. The reset signal has been sent. Now, let's wait a moment to see if that helps stabilize your connection. In the meantime, could you tell me if you've added any new devices to your network recently or made any changes to your home setup?",
+    "Customer: Actually, yes. I did get a new smart TV and connected it to the WiFi yesterday.",
+    "CSR: That's very helpful information. Sometimes new devices can cause conflicts with your network, especially if they're running background updates. Let's try disconnecting the new TV from your network temporarily to see if that resolves the issue. Could you do that for me?",
+    "Customer: Okay, I've disconnected the TV from WiFi.",
+    "CSR: Excellent. Now, let's monitor your connection for a few minutes to see if it remains stable. While we're waiting, I'll make a note in your account about this issue in case you need to call back. Is there anything else you'd like me to help you with today?",
+    "Customer: No, that's all for now. I just want my internet to work consistently.",
+    "CSR: I completely understand. Reliable internet is essential, especially these days. I'm going to stay on the line with you for a few more minutes to make sure your connection remains stable. If the issue persists after our call, please don't hesitate to call us back. We're here to help 24/7.",
+    "Customer: Thank you, I appreciate your help.",
+    "CSR: You're very welcome. It looks like your connection has been stable for the past few minutes. This suggests that the new TV might have been causing the issue. I recommend reconnecting it later and seeing if the problem returns. If it does, you might want to contact the TV manufacturer to check if there are any known issues or firmware updates available.",
+    "Customer: That makes sense. I'll try that.",
+    "CSR: Perfect. Is there anything else I can assist you with today?",
+    "Customer: No, that's all. Thanks again for your help.",
+    "CSR: It was my pleasure to help you today. Thank you for choosing ABC Tech Support. Have a wonderful day!"
+  ],
+  "call_ID": "54321",
+  "CSR_ID": "SJohnson",
+  "call_date": "2024-03-15",
+  "call_time": "14:32:18"
+}
+
