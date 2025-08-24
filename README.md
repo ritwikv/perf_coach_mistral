@@ -11,7 +11,7 @@ A Python application that uses the Mistral 7B model to evaluate call center tran
   - Hold requests
   - Call transfers
 - Builds a RAG (Retrieval-Augmented Generation) pipeline for ideal answers
-- Evaluates CSR answers using Deepeval metrics
+- Evaluates CSR answers using Deepeval metrics (AnswerRelevancyMetric and FaithfulnessMetric)
 - Provides sentiment analysis
 - Summarizes topics and themes
 - Creates concise feedback summaries
@@ -73,4 +73,3 @@ The application provides:
 - Sentiment analysis
 - Topic summarization
 - Concise feedback summary
-
